@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<main class="container page-shell large-form">
+  <section class="card">
+    <h1>Admin dashboard</h1>
+
+    <h2>Users</h2>
+    <table>
+      <thead>
+        <tr><th>Username</th><th>Email</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <% users.forEach(userRow => { %>
+          <tr>
+            <td><%= userRow.username %></td>
+            <td><%= userRow.email %></td>
+            <td><%= userRow.role %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <h2>Bookings</h2>
+    <table>
+      <thead>
+        <tr><th>Code</th><th>User</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.bookingCode %></td>
+            <td><%= booking.userId %></td>
+            <td><%= booking.status %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+<%- include('partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+<main class="container page-shell">
+  <section class="section">
+    <h1>My bookings</h1>
+    <% if (!bookings || bookings.length === 0) { %>
+      <p>You have no trips booked yet.</p>
+    <% } else { %>
+      <div class="booking-list">
+        <% bookings.forEach(booking => { %>
+          <article class="list-row">
+            <div>
+              <h3><%= booking.bookingCode %></h3>
+              <p>Status: <%= booking.status %></p>
+            </div>
+            <div><small><%= booking.createdAt.toLocaleDateString() %></small></div>
+            <a href="/bookings/<%= booking._id %>" class="primary-link">Open</a>
+          </article>
+        <% }) %>
+      </div>
+    <% } %>
+  </section>
+</main>
+<%- include('partials/footer') %>

@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+  <main class="container page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Fast fares. Clear skies.</p>
+        <h1>Book smarter routes across the globe.</h1>
+        <p>Jump between major hubs and discover low fares with a smooth, modern booking experience.</p>
+        <form class="search-widget" action="/search" method="GET">
+          <div>
+            <label>From</label>
+            <input type="text" name="from" value="JFK" />
+          </div>
+          <div>
+            <label>To</label>
+            <input type="text" name="to" value="LHR" />
+          </div>
+          <div>
+            <label>Departure</label>
+            <input type="date" name="date" />
+          </div>
+          <button type="submit">Search flights</button>
+        </form>
+      </div>
+      <div class="hero-panel">
+        <div class="mini-card">
+          <span>Featured fare</span>
+          <strong>JFK → LHR</strong>
+          <p>From $850</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Featured flights</h2>
+        <a href="/search?from=JFK&to=LHR">Browse all</a>
+      </div>
+      <div class="flight-grid">
+        <% flights.forEach(flight => { %>
+          <article class="flight-card">
+            <div class="route-line">
+              <strong><%= flight.origin %></strong>
+              <span>→</span>
+              <strong><%= flight.destination %></strong>
+            </div>
+            <p><%= flight.flightNumber %> • <%= flight.aircraft %></p>
+            <p><%= flight.departTime %> to <%= flight.arriveTime %></p>
+            <div class="card-actions">
+              <strong>$<%= flight.price %></strong>
+              <a href="/flight/<%= flight._id %>" class="primary-link">View flight</a>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+<%- include('partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<main class="container page-shell small-form">
+  <section class="card">
+    <h1>Booking confirmation</h1>
+    <div class="ticket">
+      <div class="ticket-row">
+        <span>Booking code</span>
+        <strong><%= booking.bookingCode %></strong>
+      </div>
+      <div class="ticket-row">
+        <span>Passenger</span>
+        <strong><%= booking.passengers[0].name %></strong>
+      </div>
+      <div class="ticket-row">
+        <span>Route</span>
+        <strong><%= flight.origin %> → <%= flight.destination %></strong>
+      </div>
+      <div class="ticket-row">
+        <span>Status</span>
+        <strong><%= booking.status %></strong>
+      </div>
+      <div class="ticket-row">
+        <span>Total</span>
+        <strong>$<%= booking.totalPrice %></strong>
+      </div>
+    </div>
+
+    <form action="/bookings/<%= booking._id %>/cancel" method="POST">
+      <button type="submit" class="danger">Cancel booking</button>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer') %>

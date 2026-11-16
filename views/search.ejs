@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<main class="container page-shell">
+  <section class="section">
+    <h1>Search results</h1>
+    <% if (q && q.from) { %>
+      <p class="search-summary">No results for <%= q.from %> to <%= q.to %>.</p>
+    <% } %>
+    <% if (!flights || flights.length === 0) { %>
+      <p class="muted">Try another route or date.</p>
+    <% } else { %>
+      <div class="flight-list">
+        <% flights.forEach(flight => { %>
+          <article class="list-row">
+            <div>
+              <h3><%= flight.flightNumber %></h3>
+              <p><%= flight.origin %> → <%= flight.destination %></p>
+            </div>
+            <div>
+              <p><%= flight.departTime %> — <%= flight.arriveTime %></p>
+              <p>Seats left: <%= flight.seatsAvailable %></p>
+            </div>
+            <div class="price-box">$<%= flight.price %></div>
+            <a href="/flight/<%= flight._id %>" class="primary-link">Select</a>
+          </article>
+        <% }) %>
+      </div>
+    <% } %>
+  </section>
+</main>
+<%- include('partials/footer') %>

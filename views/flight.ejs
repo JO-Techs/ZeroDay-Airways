@@ -1,0 +1,66 @@
+<%- include('partials/header') %>
+<main class="container page-shell">
+  <section class="detail-card">
+    <div class="detail-top">
+      <div>
+        <p class="eyebrow">Flight</p>
+        <h1><%= flight.flightNumber %></h1>
+      </div>
+      <div class="price-tag">$<%= flight.price %></div>
+    </div>
+
+    <div class="flight-meta">
+      <div><strong>Route:</strong> <%= flight.origin %> → <%= flight.destination %></div>
+      <div><strong>Departure:</strong> <%= flight.departTime %></div>
+      <div><strong>Arrival:</strong> <%= flight.arriveTime %></div>
+      <div><strong>Aircraft:</strong> <%= flight.aircraft %></div>
+      <div><strong>Seats:</strong> <%= flight.seatsAvailable %></div>
+    </div>
+
+    <form action="/bookings" method="POST" class="booking-inline">
+      <input type="hidden" name="flightId" value="<%= flight._id %>" />
+      <label>
+        Passenger name
+        <input type="text" name="passengerName" value="Guest" />
+      </label>
+      <button type="submit">Book this flight</button>
+    </form>
+
+    <h2>Traveler reviews</h2>
+    <% if (!reviews || reviews.length === 0) { %>
+      <p>No reviews yet.</p>
+    <% } else { %>
+      <div class="review-list">
+        <% reviews.forEach(review => { %>
+          <article class="review-card">
+            <div class="review-head">
+              <strong><%= review.username %></strong>
+              <span><%= review.rating %>/5</span>
+            </div>
+            <div class="review-body"><%- review.body %></div>
+          </article>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <form action="/reviews" method="POST" class="review-form">
+      <input type="hidden" name="flightId" value="<%= flight._id %>" />
+      <label>
+        Rating
+        <select name="rating">
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+      </label>
+      <label>
+        Review
+        <textarea name="body" rows="4" placeholder="Tell us about your experience..."></textarea>
+      </label>
+      <button type="submit">Post review</button>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer') %>

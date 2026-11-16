@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title desc">
+  <title id="title">ZeroDay Airways logo</title>
+  <desc id="desc">Navy circle with gold 0Δ and wordmark</desc>
+  <rect width="360" height="120" fill="#F6F7FB"/>
+  <circle cx="52" cy="60" r="34" fill="#0B1B3B"/>
+  <text x="52" y="70" text-anchor="middle" font-size="38" font-family="Arial, Helvetica, sans-serif" fill="#C9A227" font-weight="700">0Δ</text>
+  <text x="104" y="69" font-size="28" font-family="Arial, Helvetica, sans-serif" fill="#0B1B3B" font-weight="700">ZeroDay Airways</text>
+</svg>

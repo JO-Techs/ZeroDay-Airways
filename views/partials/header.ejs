@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= appName || 'ZeroDay Airways' %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include('banner') %>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <div class="brand">
+          <img src="/img/logo.svg" alt="ZeroDay Airways logo" class="brand-logo" />
+          <div>
+            <strong>ZeroDay Airways</strong>
+            <small>Non-stop to Root.</small>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <a href="/">Home</a>
+          <a href="/search?from=JFK&to=LHR">Search Flights</a>
+          <a href="/challenges">Challenges</a>
+          <% if (user) { %>
+            <a href="/bookings">My Bookings</a>
+            <a href="/profile">Profile</a>
+            <% if (role === 'admin') { %>
+              <a href="/admin">Admin</a>
+            <% } %>
+            <a href="/auth/logout">Logout</a>
+          <% } else { %>
+            <a href="/auth/login">Login</a>
+            <a href="/auth/register">Register</a>
+          <% } %>
+        </nav>
+      </div>
+    </header>

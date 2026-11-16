@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+<main class="container page-shell small-form">
+  <section class="card profile-card">
+    <h1>Profile</h1>
+    <div class="profile-header">
+      <img src="<%= user.avatarUrl || '/img/logo.svg' %>" alt="Profile avatar" class="avatar" />
+      <div>
+        <h3><%= user.username %></h3>
+        <p><%= user.loyaltyTier %> Status</p>
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>Miles:</strong> <%= user.miles %></p>
+    </div>
+
+    <form action="/profile" method="POST" class="stacked-form">
+      <label>
+        Username
+        <input type="text" name="username" value="<%= user.username %>" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" value="<%= user.email %>" required />
+      </label>
+      <button type="submit">Update profile</button>
+    </form>
+
+    <form action="/avatar/upload" method="POST" encType="multipart/form-data" class="stacked-form">
+      <label>
+        Upload avatar
+        <input type="file" name="avatar" accept="image/*" />
+      </label>
+      <button type="submit">Upload</button>
+    </form>
+
+    <form action="/avatar/import" method="POST" class="stacked-form">
+      <label>
+        Import avatar from URL
+        <input type="text" name="url" placeholder="https://example.com/avatar.png" />
+      </label>
+      <button type="submit">Import</button>
+    </form>
+  </section>
+</main>
+<%- include('partials/footer') %>

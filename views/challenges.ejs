@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<main class="container page-shell">
+  <section class="section">
+    <h1>Training challenges</h1>
+    <div class="challenge-list">
+      <% challenges.forEach(challenge => { %>
+        <div class="challenge-item">
+          <span class="challenge-id"><%= challenge.id %></span>
+          <div>
+            <h3><%= challenge.name %></h3>
+            <p>OWASP: <%= challenge.owasp %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>

@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+<main class="container page-shell small-form">
+  <section class="card">
+    <h1>Something went wrong</h1>
+    <p><%= message %></p>
+    <% if (stack) { %>
+      <pre class="stacktrace"><%= stack %></pre>
+    <% } %>
+  </section>
+</main>
+<%- include('partials/footer') %>
