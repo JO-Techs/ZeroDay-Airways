@@ -1,0 +1,29 @@
+name: Sync main to other branches
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge main into all other branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Fetch all branch names except main
+          BRANCHES=$(gh api "repos/$REPO/branches" --paginate --jq '.[].name' | grep -v '^main$')
+
+          for BRANCH in $BRANCHES; do
+            echo "Syncing main -> $BRANCH"
+            gh api "repos/$REPO/merges" \
+              -f base="$BRANCH" \
+              -f head="main" \
+              -f commit_message="chore: auto-sync main into $BRANCH" || echo "Conflict or error syncing $BRANCH — skipping."
+          done
