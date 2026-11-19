@@ -28,5 +28,5 @@
 ## PR review rotation
 
 - Joel reviews each PR.
-- One additional teammate reviewer is required for merge.
-- Any shared file is coordinated through the `dev` branch.
+- Make PR to the devlopment branch
+- Any shared file is coordinated through the `development` branch.
