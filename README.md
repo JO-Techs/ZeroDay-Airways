@@ -21,7 +21,7 @@ ZeroDay Airways is a fictional airline booking site with 10 intentional vulnerab
 ## Quick Start
 
 ```bash
-git clone <repo>
+git clone https://github.com/JO-Techs/ZeroDay-Airways.git
 cd zeroday-airways
 cp .env.example .env
 docker compose up -d --build
