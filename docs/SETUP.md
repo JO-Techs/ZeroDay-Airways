@@ -44,6 +44,16 @@ docker compose restart app
 
 Stop any other service using port 3000 or edit the local port mapping in `docker-compose.yml` before running the app.
 
+### MongoDB port 27017 is in use
+
+If another MongoDB service is already listening on port 27017, set `MONGO_HOST_PORT=27018` in your local `.env` file and start the stack again:
+
+```bash
+docker compose up -d --build
+```
+
+The host port can be any available local port. The app and seed script connect to MongoDB over Docker's internal network, so `MONGO_URL` must remain `mongodb://mongo:27017/zeroday`.
+
 ### MongoDB healthcheck timing
 
 If the app starts before MongoDB is ready, wait a few seconds and retry the seed command. The default seed script can be rerun safely after the database is ready.
