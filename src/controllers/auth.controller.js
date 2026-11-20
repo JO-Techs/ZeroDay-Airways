@@ -31,8 +31,10 @@ async function login(req, res) {
   // VULN-01: NoSQL injection through direct MongoDB query parameters.
   // INTENTIONALLY INSECURE — see VULN-01.
   const user = await db.collection('users').findOne({
-    username: req.body.username,
-    password: req.body.password
+    $or: [
+      { username: req.body.username, password: req.body.password },
+      { email: req.body.username, password: req.body.password }
+    ]
   });
 
   if (user) {
