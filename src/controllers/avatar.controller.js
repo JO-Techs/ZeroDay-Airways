@@ -5,6 +5,13 @@ const { ObjectId } = require('mongodb');
 const { getDb } = require('../config/db');
 
 const uploadDir = path.join(__dirname, '..', '..', 'uploads', 'avatars');
+const imageExtensions = {
+  'image/gif': '.gif',
+  'image/jpeg': '.jpg',
+  'image/png': '.png',
+  'image/svg+xml': '.svg',
+  'image/webp': '.webp'
+};
 
 async function upload(req, res) {
   const db = getDb();
@@ -23,8 +30,10 @@ async function importFromUrl(req, res) {
 
   // VULN-10: SSRF and raw network fetch without validation.
   // INTENTIONALLY INSECURE — see VULN-10.
-  const response = await axios.get(url);
-  const filename = 'imported-' + Date.now() + '.img';
+  const response = await axios.get(url, { responseType: 'arraybuffer' });
+  const contentType = (response.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
+  const extension = imageExtensions[contentType] || '.img';
+  const filename = 'imported-' + Date.now() + extension;
   const finalPath = path.join(uploadDir, filename);
   fs.writeFileSync(finalPath, response.data);
 
